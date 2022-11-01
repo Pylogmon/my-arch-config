@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Aria2
-Exec=aria2c -D --conf-path=/home/hgy/.config/aria2/aria2.conf
-StartupNotify=false
-Terminal=false

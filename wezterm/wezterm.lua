@@ -5,7 +5,7 @@ return {
   -- window_background_opacity = 0.8,
   -- 只有一个标签时隐藏标签栏
   hide_tab_bar_if_only_one_tab = true,
-  
+  -- always_new_process = true,
   enable_scroll_bar = true,
   -- 颜色
   colors = {
@@ -60,8 +60,6 @@ return {
     -- 渐变颜色
     colors = {
       '#363636',
-      '#303030',
-      '#000000',
     },
     -- 渐变方式，可选 "Linear", "Basis" and "CatmullRom"
     interpolation = 'Linear',
