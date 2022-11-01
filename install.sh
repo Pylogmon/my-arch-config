@@ -14,7 +14,7 @@ sudo pacman -Syyu --noconfirm
 isSuccess
 
 echo "[Scripts] Install paru...."
-sudo pacman -U $(pwd)/paru/paru-v1.11.1-x86_64.tar.zst --noconfirm
+sudo pacman -U $(pwd)/paru/paru-bin-1.11.1-1-x86_64.pkg.tar.zst --noconfirm
 isSuccess
 
 # aria2
