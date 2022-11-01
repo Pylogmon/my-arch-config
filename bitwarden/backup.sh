@@ -1,6 +1,7 @@
 #!/bin/bash
 date=$(date)
-cd /var/lib/bitwarden
+cd /home/$USER/.config/vaultwarden
+cp /var/lib/vaultwarden/db.* .
 git add .
 git commit -m "$date"
 git push

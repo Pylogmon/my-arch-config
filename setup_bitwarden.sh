@@ -15,29 +15,22 @@ sudo pacman -S vaultwarden vaultwarden-web bitwarden --noconfirm
 isSuccess
 
 echo "[Scripts] Clone database...."
-sudo git clone git@jihulab.com:ambition-echo/bitwarden.git /var/lib/bitwarden
+git clone git@jihulab.com:ambition-echo/bitwarden.git /home/$USER/.config/vaultwarden
 isSuccess
-sudo chown $USER /var/lib/bitwarden
-sudo chown $USER /var/lib/bitwarden/*
-sudo chgrp $USER /var/lib/bitwarden
-sudo chgrp $USER /var/lib/bitwarden/*
-sudo chmod 777 /var/lib/bitwarden
-sudo chmod 777 /var/lib/bitwarden/*
-chmod 777 /var/lib/bitwarden
-chmod 777 /var/lib/bitwarden/*
+sudo mkdir /var/lib/vaultwarden
+sudo chown vaultwarden /var/lib/vaultwarden
+sudo chgrp vaultwarden /var/lib/vaultwarden
+sudo chmod 777 /var/lib/vaultwarden/
+isSuccess
+sudo usermod -a -G vaultwarden $USER
 isSuccess
 
 echo "[Scripts] Edit service file...."
-sudo sed -i "s/User=.*/User=$USER/g" /usr/lib/systemd/system/vaultwarden.service
-sudo sed -i "s/Group=.*/Group=$USER/g" /usr/lib/systemd/system/vaultwarden.service
-sudo sed -i "s/WorkingDirectory=.*/WorkingDirectory=\/var\/lib\/bitwarden/g" /usr/lib/systemd/system/vaultwarden.service
-sudo sed -i "s/\/var\/lib\/vaultwarden/\/var\/lib\/bitwarden/g" /usr/lib/systemd/system/vaultwarden.service
 sudo sed -i "s/AmbientCapabilities=/#AmbientCapabilities=/g" /usr/lib/systemd/system/vaultwarden.service
 sudo sed -i "s/CapabilityBoundingSet=/#CapabilityBoundingSet=/g" /usr/lib/systemd/system/vaultwarden.service
 isSuccess
 
 echo "[Scripts] Edit .env file...."
-sudo sed -i "s/DATA_FOLDER=.*/DATA_FOLDER=\/var\/lib\/bitwarden/g" /etc/vaultwarden.env
 sudo sed -i "s/# WEB_VAULT_FOLDER=.*/WEB_VAULT_FOLDER=\/usr\/share\/webapps\/vaultwarden-web/g" /etc/vaultwarden.env
 sudo sed -i "s/WEB_VAULT_ENABLED=.*/WEB_VAULT_ENABLED=true/g" /etc/vaultwarden.env
 sudo sed -i "s/# ROCKET_PORT=.*/ROCKET_PORT=3349/g" /etc/vaultwarden.env
@@ -49,6 +42,13 @@ isSuccess
 
 echo "[Scripts] Start service...."
 sudo systemctl enable vaultwarden --now
+isSuccess
+
+echo "[Scripts] Copy db file"
+sudo cp /home/$USER/.config/vaultwarden/db* /var/lib/vaultwarden/
+sudo chown vaultwarden /var/lib/vaultwarden/*
+sudo chgrp vaultwarden /var/lib/vaultwarden/*
+sudo chmod 777 /var/lib/vaultwarden/*
 isSuccess
 
 echo "[Scripts] Set Cron backup"
