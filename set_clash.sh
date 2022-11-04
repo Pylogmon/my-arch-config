@@ -14,5 +14,5 @@ sudo pacman -Syyu --noconfirm
 isSuccess
 
 echo "[Scripts] Install clash...."
-sudo pacman -U $(pwd)/clash/clash-verge-bin-1.1.1-1-x86_64.pkg.tar.zst --noconfirm
+sudo pacman -U $(pwd)/clash/clash-verge-bin-1.1.2-2-x86_64.pkg.tar.zst --noconfirm
 isSuccess
