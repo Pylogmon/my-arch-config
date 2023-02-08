@@ -5,7 +5,9 @@ After=network.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/aria2c --conf-path=/home/root/.config/aria2/aria2.conf
+ExecStart=/usr/bin/aria2c --conf-path=/home/hgy/.config/aria2/aria2.conf
+User=hgy
+Group=hgy
 
 [Install]
 WantedBy=multi-user.target
