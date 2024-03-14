@@ -2,11 +2,15 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 return {
   -- 窗口不透明度
-  -- window_background_opacity = 0.8,
+  window_background_opacity = 0.8,
   -- 只有一个标签时隐藏标签栏
   hide_tab_bar_if_only_one_tab = true,
-  -- always_new_process = true,
+  always_new_process = true,
   enable_scroll_bar = true,
+  font = wezterm.font_with_fallback {
+    'JetBrains Mono',
+    'Noto Sans CJK SC',
+  },
   -- 颜色
   colors = {
     -- 标签栏
@@ -59,7 +63,7 @@ return {
     orientation = 'Vertical',
     -- 渐变颜色
     colors = {
-      '#363636',
+      '#121212',
     },
     -- 渐变方式，可选 "Linear", "Basis" and "CatmullRom"
     interpolation = 'Linear',
@@ -82,4 +86,17 @@ return {
       action = wezterm.action.SplitVertical {domain = 'DefaultDomain'},
     },
   },
+  -- 自定义鼠标滚轮灵敏度
+  mouse_bindings = {
+    {
+      event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+      mods = 'NONE',
+      action = act.ScrollByLine(-3),
+    },
+    {
+      event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+      mods = 'NONE',
+      action = act.ScrollByLine(3),
+    },
+  }
 }
