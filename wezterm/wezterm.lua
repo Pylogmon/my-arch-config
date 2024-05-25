@@ -5,7 +5,6 @@ return {
   window_background_opacity = 0.8,
   -- 只有一个标签时隐藏标签栏
   hide_tab_bar_if_only_one_tab = true,
-  always_new_process = true,
   enable_scroll_bar = true,
   font = wezterm.font_with_fallback {
     'JetBrains Mono',
